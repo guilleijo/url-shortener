@@ -127,3 +127,6 @@ STATICFILES_DIRS = [
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = str(BASE_DIR / 'staticfiles')
+
+# Base url
+BASE_URL = env('BASE_URL', default='http://localhost:8000/')
