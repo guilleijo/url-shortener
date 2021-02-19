@@ -4,7 +4,7 @@ from django.conf import settings
 
 
 class Url(models.Model):
-    url = models.URLField()
+    url = models.URLField(max_length=255)
     hashed_url = models.CharField(max_length=10, blank=True)
 
     def __str__(self):
