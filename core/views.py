@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.urls import reverse
-from django.views import generic, View
+from django.views import View
 from django.shortcuts import render, redirect
 from django.core.exceptions import MultipleObjectsReturned
 
@@ -17,37 +17,36 @@ class HomeView(View):
 
     def post(self, request, *args, **kwargs):
         form = UrlForm(request.POST)
-        if form.is_valid():
-            url = form.cleaned_data.get('url')
-            hashed_url = form.cleaned_data.get('hashed_url')
-            
-            if hashed_url:
-                obj = Url.objects.filter(hashed_url=hashed_url).first()
-                if obj is not None and obj.url != url:
-                    context = {"form": form}
-                    messages.error(request, ALREADY_USED_MESSAGE)
-                elif obj is not None and obj.url == url:
-                    context = {'short_url': obj.get_full_short_url()}
-                else:
-                    obj, _ = Url.objects.get_or_create(url=url, hashed_url=hashed_url)
-                    context = {'short_url': obj.get_full_short_url()}
-                return render(request, self.template_name, context)
+        if not form.is_valid():
+            return render(request, self.template_name, {'form': form})
 
+        url = form.cleaned_data.get('url')
+        hashed_url = form.cleaned_data.get('hashed_url')
+
+        if hashed_url:
+            obj, created = Url.objects.get_or_create(
+                hashed_url=hashed_url,
+                defaults={'url': url},
+            )
+            if not created and obj.url != url:
+                messages.error(request, ALREADY_USED_MESSAGE)
+                return render(
+                    request,
+                    self.template_name,
+                    {'form': form},
+                )
+        else:
             try:
                 obj, _ = Url.objects.get_or_create(url=url)
             except MultipleObjectsReturned:
                 obj = Url.objects.filter(url=url).first()
 
-            full_short_url = obj.get_full_short_url()
-            context = {'short_url': full_short_url}
-
-            return render(request, self.template_name, context)
-
-        return render(request, self.template_name, {"form": form})
+        return render(
+            request, self.template_name, {'short_url': obj.get_full_short_url()}
+        )
 
 
 class RedirectView(View):
-
     def get(self, request, *args, **kwargs):
         hashed_url = kwargs.get('hash')
         try:
