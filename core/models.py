@@ -11,7 +11,8 @@ class Url(models.Model):
         return f'{self.pk} - {self.url} - {self.hashed_url}'
 
     def save(self, *args, **kwargs):
-        self.hashed_url = self.hash_url(self.url)
+        if not self.hashed_url:
+            self.hashed_url = self.hash_url(self.url)
         super().save(*args, **kwargs)
 
     def hash_url(self, url):
