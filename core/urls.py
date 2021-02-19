@@ -5,5 +5,5 @@ from .views import HomeView, RedirectView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home_page'),
-    path('<hash>', RedirectView.as_view(), name='redirect_view'),
+    path('<hash>/', RedirectView.as_view(), name='redirect_view'),
 ]
