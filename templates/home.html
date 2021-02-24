@@ -22,6 +22,7 @@
             <div class="flex flex-col w-full space-y-2">
                 <div class="w-full space-y-4">
                     <input
+                        id='URL'
                         required
                         placeholder="URL"
                         value="{{ form.url.value }}"
@@ -43,8 +44,10 @@
                 </div>
             </div>
             <button
+                id="create"
+                onclick="setLoading()"
                 type="submit"
-                class="transform hover:scale-110 transition duration-150 ease-in-out shadow-md flex font-bold mx-auto mt-8 border py-2 px-8 focus:outline-none hover:bg-gray-100 rounded text-sm ">
+                class="transform hover:scale-110 transition duration-150 ease-in-out shadow-md flex font-bold mx-auto mt-8 border py-2 px-8 focus:outline-none hover:bg-gray-100 rounded text-xs">
                     Create
             </button>
         </form>
@@ -61,12 +64,19 @@
     </div>
 </div>
 
-<script>
+<script type="text/javascript">
     function copyText() {
-      var copyText = document.getElementById("shortUrl");
+      let copyText = document.getElementById("shortUrl");
       copyText.select();
       copyText.setSelectionRange(0, 99999);
       document.execCommand("copy");
+    }
+
+    function setLoading() {
+      let url = document.getElementById("URL");
+      if (url.value) {
+        document.getElementById("create").innerHTML = "Loading...";
+      }
     }
 </script>
 {% endblock content %}
