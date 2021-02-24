@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django_extensions',
     # Personal
     'core',
+    'tailwind',
+    'theme',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +124,5 @@ STATIC_ROOT = str(BASE_DIR / 'staticfiles')
 
 # Base url
 BASE_URL = env('BASE_URL', default='http://localhost:8000/')
+
+TAILWIND_APP_NAME = 'theme'
