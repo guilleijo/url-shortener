@@ -1,6 +1,6 @@
-<header class="text-gray-600 body-font">
+<header class="body-font">
     <div class="container mx-auto flex flex-wrap p-5 flex-row items-center justify-between">
-        <a href="{% url "home_page" %}" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+        <a href="{% url "home_page" %}" class="flex title-font font-medium items-center mb-4 md:mb-0">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
                 stroke-linejoin="round" stroke-width="2" class="w-12 h-12 p-2 rounded-full" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -9,7 +9,7 @@
             <span class="ml-1 text-lg font-medium">Url Shortener</span>
         </a>
         <div onclick="switchTheme()" class="h-5 w-5 cursor-pointer transform hover:scale-110 transition duration-150 ease-in-out">
-            <svg id="moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="hidden" id="moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
             </svg>
             <svg class="hidden" id="sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

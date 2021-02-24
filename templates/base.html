@@ -2,20 +2,22 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Shortener</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css"/>
-    <link rel="icon" href="{% static 'images/logo.svg' %}">
-</head>
-<body class="bg-gray-100">
-    <div id="container" class="flex flex-col h-screen mx-auto px-4 md:w-4/5 max-w-screen-md">
-        {% include 'navbar.html' %}
-        {% block content %}
-        {% endblock content %}
-        {% include 'footer.html' %}
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>URL Shortener</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css"/>
+        <link rel="icon" href="{% static 'images/logo.svg' %}">
+    </head>
+    <body id="container">
+        <div class="bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+            <div class="flex flex-col h-screen mx-auto px-4 md:w-4/5 max-w-screen-md">
+                {% include 'navbar.html' %}
+                {% block content %}
+                {% endblock content %}
+                {% include 'footer.html' %}
+            </div>
+        </div>
+    </body>
 </html>
