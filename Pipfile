@@ -13,8 +13,8 @@ django-environ = "*"
 gunicorn = "*"
 whitenoise = "*"
 django-extensions = "*"
-psycopg2 = "*"
 django-tailwind = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.8"
